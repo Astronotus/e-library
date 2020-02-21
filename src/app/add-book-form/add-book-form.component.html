@@ -1,0 +1,49 @@
+<!-- <div class="modal-header">
+    <h4 class="modal-title">Добавить книгу</h4>
+</div>
+<div class="modal-body">
+    <form novalidate [formGroup]="bookForm">
+        <div><label for="">Название</label><input type="text" class="form-control" formControlName="name"></div>
+        <div><label for="">Автор</label><input type="text" class="form-control" formControlName="author"></div>
+        <div><label for="">Год выпуска</label><input type="text" class="form-control" formControlName="release"></div>
+        <div><label for="">Жанр</label><input type="text" class="form-control" formControlName="genre"></div>
+        <div><label for="">Количество</label><input type="text" class="form-control" formControlName="numberOf"></div>
+        <div></div><button (click)="submit()"> Добавить</button>
+    </form>
+</div> -->
+
+
+<div class="modal-header">
+  <h4 class="modal-title">Добавить книгу</h4>
+</div>
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+  <div class="modal-boy">
+    <div class="container">
+      <div class="form-group">
+        <label for="username">Название</label>
+        <input type="text" class="form-control" formControlName="name" />
+      </div>
+      <div class="form-group">
+        <label for="username">Автор</label>
+        <input type="text" class="form-control" formControlName="author" />
+      </div>
+      <div class="form-group">
+        <label for="username">Год</label>
+        <input type="text" class="form-control" formControlName="release" />
+      </div>
+      <div class="form-group">
+        <label for="username">Жанр</label>
+        <input type="text" class="form-control" formControlName="genre" />
+      </div>
+      <div class="form-group">
+        <label for="username">Количество</label>
+        <input type="text" class="form-control" formControlName="numberOf" />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" [disabled]="!myForm.valid">
+      Добавить
+    </button>
+  </div>
+</form>

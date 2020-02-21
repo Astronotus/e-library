@@ -1,0 +1,19 @@
+app-list {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+app-header {
+    height:150px ;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+html {
+    font-size: 20px;
+    height: 100vh;
+}
+

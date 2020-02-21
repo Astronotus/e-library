@@ -1,0 +1,10 @@
+
+    <div class="book" *ngFor="let aBook of list">
+        <h2>{{aBook.id}}:{{aBook.name}} </h2>
+        <p>Автор: {{aBook.author}}</p>
+        <p>Год выпуска: {{aBook.release}}</p>
+        <p>Жанры: {{aBook.genre}}</p>
+        <p>Экземпляров: {{aBook.numberOf}}</p>
+        <button>Редактировать</button>
+        <button (click)="deleteBook(aBook.id)">Удалить</button>
+    </div>
