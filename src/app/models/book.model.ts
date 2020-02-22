@@ -4,12 +4,12 @@ export class Book {
     author: string
     release: number
     genre: string[]
-    numberOf: number
+    numberOf?: number
     readonly isTaken: boolean
 
     static idMaker: number = 0
 
-    constructor(name: string, author: string, release: number, genre: string[], numberOf: number) {
+    constructor(name: string, author: string, release: number, genre: string[], numberOf?: number) {
         this.id = this.generateId()
         this.name = name
         this.author = author

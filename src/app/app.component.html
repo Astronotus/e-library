@@ -1,4 +1,7 @@
 <div class="wrap">
-    <app-header (addBook)="addBook($event)" ></app-header>  
-    <app-list [list]="list" (deleteAction)="deleteBook($event)" ></app-list>
+    <app-header (addBook)="addBook($event)"></app-header>
+    <app-list [list]="list" (deleteAction)="deleteBook($event)" (editAction)="editBook($event)"
+        (editBookIdAction)="editBookId($event)" (takeBookIdAction)="takeBookId($event)"
+        (takeBookAction)="takeBook($event)">
+    </app-list>
 </div>

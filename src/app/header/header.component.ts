@@ -10,7 +10,6 @@ import { Book } from '../models/book.model';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() addFormVisible: boolean
   @Output() addBook = new EventEmitter<Book>();
 
   constructor(private modalService: NgbModal) {
@@ -20,7 +19,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
 
   }
-
 
   openFormModal() {
     const modalRef = this.modalService.open(AddBookFormComponent);

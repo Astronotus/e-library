@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { NgForm, FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Book } from '../models/book.model';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,9 +7,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './add-book-form.component.html',
   styleUrls: ['./add-book-form.component.css']
 })
-export class AddBookFormComponent  {
+export class AddBookFormComponent {
 
-  myForm: FormGroup
+  addBookForm: FormGroup
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -19,7 +18,7 @@ export class AddBookFormComponent  {
     this.createForm();
   }
   private createForm() {
-    this.myForm = this.formBuilder.group({
+    this.addBookForm = this.formBuilder.group({
       name: "",
       author: "",
       release: "",
@@ -28,8 +27,6 @@ export class AddBookFormComponent  {
     });
   }
   private submitForm() {
-    this.activeModal.close(this.myForm.value);
+    this.activeModal.close(this.addBookForm.value);
   }
-
-
 }

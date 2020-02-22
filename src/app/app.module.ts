@@ -11,6 +11,7 @@ import { BookComponent } from './book/book.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddBookFormComponent } from './add-book-form/add-book-form.component';
 import { EditBookFormComponent } from './edit-book-form/edit-book-form.component';
+import { TakeBookFormComponent } from './take-book-form/take-book-form.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EditBookFormComponent } from './edit-book-form/edit-book-form.component
     ListComponent,
     BookComponent,
     AddBookFormComponent,
-    EditBookFormComponent
+    EditBookFormComponent,
+    TakeBookFormComponent
   
   ],
   imports: [
@@ -33,7 +35,9 @@ import { EditBookFormComponent } from './edit-book-form/edit-book-form.component
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    AddBookFormComponent
+    AddBookFormComponent,
+    EditBookFormComponent,
+    TakeBookFormComponent
   ]
 })
 export class AppModule { }
