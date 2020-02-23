@@ -1,6 +1,12 @@
 header {
     height: 150px;
-    border: 2px solid black;
-    
+    border: 2px solid black; 
 }
 
+h1{margin-left: 50px;}
+
+.userButton {margin-left: 50px;}
+
+.adminButton {margin-left: 50px;}
+
+.adminButton{display: flex;}

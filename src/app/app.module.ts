@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddBookFormComponent } from './add-book-form/add-book-form.component';
 import { EditBookFormComponent } from './edit-book-form/edit-book-form.component';
 import { TakeBookFormComponent } from './take-book-form/take-book-form.component';
+import { ListTakenBooksComponent } from './list-taken-books/list-taken-books.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TakeBookFormComponent } from './take-book-form/take-book-form.component
     BookComponent,
     AddBookFormComponent,
     EditBookFormComponent,
-    TakeBookFormComponent
+    TakeBookFormComponent,
+    ListTakenBooksComponent
   
   ],
   imports: [

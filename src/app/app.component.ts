@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Book } from './models/book.model';
-import { LibraryService } from './library.service';
+import { LibraryService } from './service/library.service';
 import { TakenBook } from './models/takenBook.model';
 
 @Component({
@@ -11,73 +11,74 @@ import { TakenBook } from './models/takenBook.model';
 export class AppComponent {
   title = 'librery';
 
-  constructor(private libreryService: LibraryService) {
+  constructor(private libreryService: LibraryService) { }
 
+  list: Book[] = [new Book("1984", "Джордж Оруэлл", 1997, ["Детектив","Научный"], 5),
+  new Book("451° по Фаренгейту", "Рей Брэдбери", 1999, ["Детектив","Научный"], 5),
+  new Book("Шантарам", "Грегори Дэвид Робертс", 2003, ["Детектив","Научный"], 5),
+  new Book("Мастер и Маргарита", "Михаил Афанасьевич Булгаков", 2011, ["Детектив","Научный"], 5),
+  new Book("Три товарища", "Эрих Мария Ремарк", 1995, ["Детектив","Научный"], 5),
+  new Book("Анна Каренина", "Лев Толстой", 1956, ["Детектив","Научный"], 5),
+  new Book("Над пропастью во ржи", "Джером Д. Сэлинджер", 2003, ["Детектив","Научный"], 5),
+  new Book("Портрет Дориана Грея", "Оскар Уайльд", 1984, ["Детектив","Научный"], 5),
+  new Book("Маленький принц", "Антуан де Сент-Экзюпери", 1967, ["Детектив","Научный"], 5),
+  ]
+  isTakenList: TakenBook[] = []
+  activeUser: string = "visitor"
+  activeList: string = "fullList"
+
+  togleUser(user: string) {
+    this.activeUser = user
   }
 
-  list: Book[] = [new Book("Гарри Поттер", "alex", 1997, ["detective"], 5),
-  new Book("Маугли", "inna", 1999, ["detective"], 5),
-  new Book("Робинзон Крузо", "cvets", 2003, ["comedy"], 5),
-  new Book("Таинственный Остров", "lera", 2011, ["detective"], 5),
-  new Book("Томм Соййер", "andry", 2011, ["fantasy"], 5),
-  new Book("Война и мир", "andry", 2011, ["fantasy"], 5),
-  new Book("Успешный успех", "andry", 2011, ["fantasy"], 5),
-  new Book("Автомобили", "andry", 2011, ["fantasy"], 5),
-  new Book("Девятая книга", "andry", 2011, ["fantasy"], 5),
-  ]
-
-  isTakenList: TakenBook[]=[]
+  togleList(list: string) {
+    this.activeList = list
+  }
 
   addBook({ name, author, release, genre, numberOf }) {
-
-    this.list.push(new Book(name, author, release, genre, numberOf))
+    let genreArr: string[]
+    genreArr = genre.split(",")
+    this.list.push(new Book(name, author, release, genreArr, numberOf))
   }
 
   deleteBook(id: number) {
     this.list.splice(this.list.findIndex(book => book.id == id), 1)
   }
 
-  editBook({ name, author, release, genre, numberOf }) {
-    this.list[this.serchIndexId()].name = name
-    this.list[this.serchIndexId()].author = author
-    this.list[this.serchIndexId()].release = release
-    this.list[this.serchIndexId()].genre = genre
-    this.list[this.serchIndexId()].numberOf = numberOf
+  serchActiveBookIndexId() {
+    return this.list.findIndex(book => book.id == this.libreryService.activeBook.id)
   }
 
-  serchIndexId() {
-    return this.list.findIndex(book => book.id == this.libreryService.activeBookEditModal.id)
+  editBook({ name, author, release, genre, numberOf }) {
+    this.list[this.serchActiveBookIndexId()].name = name
+    this.list[this.serchActiveBookIndexId()].author = author
+    this.list[this.serchActiveBookIndexId()].release = release
+    this.list[this.serchActiveBookIndexId()].genre = genre
+    this.list[this.serchActiveBookIndexId()].numberOf = numberOf
+  }
+
+  returnBook(id: number) {
+    if (this.isTakenList.find(book => book.id == id)) {
+      this.isTakenList.splice(this.isTakenList.findIndex(book => book.id == id), 1)
+      ++this.list[this.list.findIndex(book => book.id == id)].numberOf
+    }
+    else alert("Мы такую книгу вам не давали")
   }
 
   editBookId(id: number) {
-    this.libreryService.activeBookEditModal = this.list[this.list.findIndex(book => book.id == id)]
+    this.libreryService.activeBook = this.list[this.list.findIndex(book => book.id == id)]
   }
 
   takeBookId(id: number) {
-    this.libreryService.activeBookEditModal = this.list[this.list.findIndex(book => book.id == id)]
+    this.libreryService.activeBook = this.list[this.list.findIndex(book => book.id == id)]
   }
 
   takeBook({ whoTook, returnDate }) {
-    
-    if(this.libreryService.activeBookEditModal.numberOf>0){
-
-      --this.list[this.serchIndexId()].numberOf
-
-      this.isTakenList.push(new TakenBook(this.libreryService.activeBookEditModal.id,
-        this.libreryService.activeBookEditModal.name,
-        this.libreryService.activeBookEditModal.author,
-        this.libreryService.activeBookEditModal.release,
-        this.libreryService.activeBookEditModal.genre, 
-        whoTook, 
-        returnDate
-      ))
-
-    
-
+    let actBook = this.libreryService.activeBook
+    if (this.libreryService.activeBook.numberOf > 0) {
+      --this.list[this.serchActiveBookIndexId()].numberOf
+      this.isTakenList.push(new TakenBook(actBook.id,actBook.name,actBook.author,actBook.release,actBook.genre,whoTook,returnDate))
     }
     else alert("Книги закончились")
-
-    console.log(this.isTakenList)
   }
-
 }

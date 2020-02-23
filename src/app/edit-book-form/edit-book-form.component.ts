@@ -2,7 +2,7 @@ import { Component, } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Book } from '../models/book.model';
-import { LibraryService } from '../library.service';
+import { LibraryService } from '../service/library.service';
 
 @Component({
   selector: 'app-edit-book-form',
@@ -18,18 +18,13 @@ export class EditBookFormComponent {
     private formBuilder: FormBuilder,
     private libreryService: LibraryService
   ) {
-    
-    const asyncCall = async () =>{
+    const asynCreateForm = async () => {
       const result = await libreryService;
-       this.createForm(result.activeBookEditModal)
-
+      this.createForm(result.activeBook)
     }
-
-    asyncCall()
-    
-
+    asynCreateForm()
   }
-  private createForm(book:Book) {
+  private createForm(book: Book) {
     this.editBookForm = this.formBuilder.group({
       name: new FormControl(book.name),
       author: new FormControl(book.author),

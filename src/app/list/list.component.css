@@ -1,9 +1,9 @@
-/* main {
-    border: 2px solid blue;
-    height: 800px;
-    display: flex 
-    
-} */
+.content {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
 .book {
     margin-left: 50px;
     width:400px;
@@ -11,3 +11,9 @@
     margin-top: 50px;
     padding: 20px;
 }
+
+h2 {margin-bottom: 20px;}
+
+p {margin-bottom: 5px;}
+
+.buttons {margin-top: 20px;}

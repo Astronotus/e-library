@@ -6,7 +6,6 @@ export class Book {
     genre: string[]
     numberOf?: number
     readonly isTaken: boolean
-
     static idMaker: number = 0
 
     constructor(name: string, author: string, release: number, genre: string[], numberOf?: number) {
@@ -22,5 +21,4 @@ export class Book {
     generateId(): number {
         return ++Book.idMaker
     }
-
 }

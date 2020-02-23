@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddBookFormComponent } from '../add-book-form/add-book-form.component';
 import { Book } from '../models/book.model';
@@ -8,19 +8,30 @@ import { Book } from '../models/book.model';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
 
   @Output() addBook = new EventEmitter<Book>();
+  @Output() togleListAction = new EventEmitter();
+  @Output() togleUserAction = new EventEmitter();
+  @Input() activeUser:string;
+  @Input() activeList:string;
+  
+  constructor(private modalService: NgbModal) {}
+  
+  visitor:string="visitor"
+  admin:string="admin"
+  fullList:string="fullList"
+  takenList:string="takenList"
 
-  constructor(private modalService: NgbModal) {
-
+  togleUser(user:string){
+    this.togleUserAction.emit(user)
   }
 
-  ngOnInit() {
-
+  togleList(list:string){
+    this.togleListAction.emit(list)
   }
 
-  openFormModal() {
+  openFormModalAddBook() {
     const modalRef = this.modalService.open(AddBookFormComponent);
     modalRef.result.then((result) => {
       this.addBook.emit(result)
@@ -28,5 +39,4 @@ export class HeaderComponent implements OnInit {
       console.log(error);
     });
   }
-
 }

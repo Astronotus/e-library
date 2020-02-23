@@ -1,7 +1,15 @@
-<div class="wrap">
-    <app-header (addBook)="addBook($event)"></app-header>
-    <app-list [list]="list" (deleteAction)="deleteBook($event)" (editAction)="editBook($event)"
-        (editBookIdAction)="editBookId($event)" (takeBookIdAction)="takeBookId($event)"
-        (takeBookAction)="takeBook($event)">
-    </app-list>
+<app-header (addBook)="addBook($event)" (togleListAction)="togleList($event)" (togleUserAction)="togleUser($event)"
+    [activeUser]="activeUser" [activeList]="activeList">
+</app-header>
+<div [ngSwitch]="activeList">
+    <ng-template ngSwitchCase="fullList">
+        <app-list *ngIf="activeList; else listTakenBook" [activeUser]="activeUser" [list]="list"
+            (deleteAction)="deleteBook($event)" (editAction)="editBook($event)" (editBookIdAction)="editBookId($event)"
+            (takeBookIdAction)="takeBookId($event)" (takeBookAction)="takeBook($event)"
+            (returnBookAction)="returnBook($event)">
+        </app-list>
+    </ng-template>
+    <ng-template ngSwitchCase="takenList">
+        <app-list-taken-books [isTakenList]="isTakenList"></app-list-taken-books>
+    </ng-template>
 </div>

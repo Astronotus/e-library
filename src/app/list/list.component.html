@@ -1,12 +1,16 @@
 <div class="book" *ngFor="let aBook of list">
-    <h2>{{aBook.id}}:{{aBook.name}} </h2>
+    <h2>{{aBook.name}}</h2>
     <p>Автор: {{aBook.author}}</p>
     <p>Год выпуска: {{aBook.release}}</p>
     <p>Жанры: {{aBook.genre}}</p>
     <p>Экземпляров: {{aBook.numberOf}}</p>
-    <button (click)="openFormModal(aBook.id)">Редактировать</button>
-    <button (click)="deleteBook(aBook.id)">Удалить</button>
-    <button (click)="openFormModalTakeBook(aBook.id)" >Взять книгу</button>
-    <button>Отдать книгу</button>
-
+    <div [ngSwitch]="activeUser" class="buttons">
+        <ng-template ngSwitchCase="visitor"><button (click)="openFormModalTakeBook(aBook.id)">Взять книгу</button>
+            <button (click)="returnBook(aBook.id)">Вернуть книгу</button>
+        </ng-template>
+        <ng-template ngSwitchCase="admin">
+            <button (click)="openFormModalEditBook(aBook.id)">Редактировать</button>
+            <button (click)="deleteBook(aBook.id)">Удалить</button>
+        </ng-template>
+    </div>
 </div>

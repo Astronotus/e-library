@@ -1,19 +1,21 @@
 app-list {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+app-list-taken-books{
+    display: flex;
     justify-content: start;
     flex-wrap: wrap;
 }
 
 app-header {
-    height:150px ;
+    height:120px ;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: start;
+    border-bottom: 2px solid black;
 }
 
-
-html {
-    font-size: 20px;
-    height: 100vh;
-}
 

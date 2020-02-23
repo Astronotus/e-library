@@ -1,3 +1,20 @@
 <h1>Электронная библиотека</h1>
-<button (click)="openFormModal()">Добавить книгу </button>
-<button>показать  книги на руках</button>
+<div class="userButton">
+    <button (click)="togleUser(visitor)">Посетитель</button>
+    <button (click)="togleUser(admin)">Администратор</button>
+</div>
+<div [ngSwitch]="activeUser">
+    <ng-template ngSwitchCase="admin">
+        <div class="adminButton">
+            <button (click)="openFormModalAddBook()">Добавить книгу </button>
+            <div [ngSwitch]="activeList" >
+                <ng-template ngSwitchCase="takenList">
+                    <button (click)="togleList(fullList)">Все книги</button>
+                </ng-template>
+                <ng-template ngSwitchCase="fullList">
+                    <button (click)="togleList(takenList)">Отданые книги</button>
+                </ng-template>
+            </div>
+        </div>
+    </ng-template>
+</div>

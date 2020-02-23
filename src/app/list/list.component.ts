@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Book } from '../models/book.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditBookFormComponent } from '../edit-book-form/edit-book-form.component';
@@ -10,25 +10,27 @@ import { TakeBookFormComponent } from '../take-book-form/take-book-form.componen
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent  {
   @Input() list:Book[]
+  @Input() activeUser:string
   @Output() deleteAction = new EventEmitter<number>();
-  @Output() editAction = new EventEmitter<number>();
-  @Output() takeBookAction = new EventEmitter<number>();
+  @Output() editAction = new EventEmitter<any>();
+  @Output() takeBookAction = new EventEmitter<any>();
   @Output() editBookIdAction = new EventEmitter<number>();
   @Output() takeBookIdAction = new EventEmitter<number>();
-
+  @Output() returnBookAction = new EventEmitter<number>();
 
   constructor(private modalService: NgbModal) { }
-
-  ngOnInit() {
-  }
 
   deleteBook(id:number){
     this.deleteAction.emit(id)
   }
 
-  openFormModal(id:number) {
+  returnBook(id:number){
+    this.returnBookAction.emit(id)
+  }
+
+  openFormModalEditBook(id:number) {
     const modalRef = this.modalService.open(EditBookFormComponent);
     this.editBookIdAction.emit(id)
 
@@ -49,5 +51,4 @@ export class ListComponent implements OnInit {
       console.log(error);
     });
   }
-
 }

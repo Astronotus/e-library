@@ -1,0 +1,9 @@
+<div class="book" *ngFor="let aBook of isTakenList">
+    <h2>{{aBook.name}} </h2>
+    <p>Автор: {{aBook.author}}</p>
+    <p>Год выпуска: {{aBook.release}}</p>
+    <p>Жанры: {{aBook.genre}}</p>
+    <p>Кто взял: {{aBook.whoTook}}</p>
+    <p>Когда взял: {{aBook.isTakenDate | date:"shortDate" }} </p>
+    <P>Когда должен вернуть: {{aBook.returnDate}} </P>
+</div>
