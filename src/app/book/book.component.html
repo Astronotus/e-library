@@ -1,1 +1,9 @@
-<p>book works!</p>
+<div ngClass="{{classBook}}" >
+    <h2>{{aBook.name}} </h2>
+    <p>Автор: {{aBook.author}}</p>
+    <p>Год выпуска: {{aBook.release}}</p>
+    <p>Жанры: {{aBook.genre}}</p>
+    <p>Кто взял: {{aBook.whoTook}}</p>
+    <p>Когда взял: {{aBook.isTakenDate | date:"mediumDate" }} </p>
+    <P>Когда должен вернуть: {{aBook.returnDate | date:"mediumDate"}} </P>
+</div>

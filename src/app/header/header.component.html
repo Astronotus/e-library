@@ -1,7 +1,7 @@
 <h1>Электронная библиотека</h1>
-<div class="userButton">
-    <button (click)="togleUser(visitor)">Посетитель</button>
-    <button (click)="togleUser(admin)">Администратор</button>
+<div class="userButton" [ngSwitch]="activeUser">
+    <ng-template  ngSwitchCase="admin" ><button (click)="togleUser(visitor)">Стать посетителем</button></ng-template>
+    <ng-template  ngSwitchCase="visitor"><button (click)="togleUser(admin)">Стать админом</button></ng-template>
 </div>
 <div [ngSwitch]="activeUser">
     <ng-template ngSwitchCase="admin">
@@ -12,7 +12,7 @@
                     <button (click)="togleList(fullList)">Все книги</button>
                 </ng-template>
                 <ng-template ngSwitchCase="fullList">
-                    <button (click)="togleList(takenList)">Отданые книги</button>
+                    <button (click)="togleList(takenList)">Книги у читателей</button>
                 </ng-template>
             </div>
         </div>

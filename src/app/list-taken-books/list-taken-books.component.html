@@ -1,4 +1,4 @@
-<div class="book" *ngFor="let aBook of isTakenList">
+<!-- <div class="book" *ngFor="let aBook of isTakenList">
     <h2>{{aBook.name}} </h2>
     <p>Автор: {{aBook.author}}</p>
     <p>Год выпуска: {{aBook.release}}</p>
@@ -6,4 +6,7 @@
     <p>Кто взял: {{aBook.whoTook}}</p>
     <p>Когда взял: {{aBook.isTakenDate | date:"shortDate" }} </p>
     <P>Когда должен вернуть: {{aBook.returnDate}} </P>
-</div>
+</div> -->
+
+
+<app-book *ngFor="let aBook of isTakenList" [aBook]="aBook" ></app-book>

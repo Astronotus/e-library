@@ -13,17 +13,18 @@ export class AppComponent {
 
   constructor(private libreryService: LibraryService) { }
 
-  list: Book[] = [new Book("1984", "Джордж Оруэлл", 1997, ["Детектив","Научный"], 5),
-  new Book("451° по Фаренгейту", "Рей Брэдбери", 1999, ["Детектив","Научный"], 5),
-  new Book("Шантарам", "Грегори Дэвид Робертс", 2003, ["Детектив","Научный"], 5),
-  new Book("Мастер и Маргарита", "Михаил Афанасьевич Булгаков", 2011, ["Детектив","Научный"], 5),
-  new Book("Три товарища", "Эрих Мария Ремарк", 1995, ["Детектив","Научный"], 5),
-  new Book("Анна Каренина", "Лев Толстой", 1956, ["Детектив","Научный"], 5),
-  new Book("Над пропастью во ржи", "Джером Д. Сэлинджер", 2003, ["Детектив","Научный"], 5),
-  new Book("Портрет Дориана Грея", "Оскар Уайльд", 1984, ["Детектив","Научный"], 5),
-  new Book("Маленький принц", "Антуан де Сент-Экзюпери", 1967, ["Детектив","Научный"], 5),
+  list: Book[] = [new Book("1984", "Джордж Оруэлл", 1997, ["Детектив", "Научный"], 5),
+  new Book("451° по Фаренгейту", "Рей Брэдбери", 1999, ["Детектив", "Научный"], 5),
+  new Book("Шантарам", "Грегори Дэвид Робертс", 2003, ["Детектив", "Научный"], 5),
+  new Book("Мастер и Маргарита", "Михаил Афанасьевич Булгаков", 2011, ["Детектив", "Научный"], 5),
+  new Book("Три товарища", "Эрих Мария Ремарк", 1995, ["Детектив", "Научный"], 5),
+  new Book("Анна Каренина", "Лев Толстой", 1956, ["Детектив", "Научный"], 5),
+  new Book("Над пропастью во лжи", "Джером Д. Сэлинджер", 2003, ["Детектив", "Научный"], 5),
+  new Book("Портрет Дориана Грея", "Оскар Уайльд", 1984, ["Детектив", "Научный"], 5),
+  new Book("Маленький принц", "Антуан де Сент-Экзюпери", 1967, ["Детектив", "Научный"], 5),
   ]
-  isTakenList: TakenBook[] = []
+  isTakenList: TakenBook[] = [new TakenBook(4, "Мастер и Маргарита", "Михаил Афанасьевич Булгаков", 2011, ["Детектив", "Научный"], "Кирил", new Date("2018-10-10")),
+  new TakenBook(4, "Мастер и Маргарита", "Михаил Афанасьевич Булгаков", 2011, ["Детектив", "Научный"], "Василий", new Date("2020-10-10"))]
   activeUser: string = "visitor"
   activeList: string = "fullList"
 
@@ -77,7 +78,7 @@ export class AppComponent {
     let actBook = this.libreryService.activeBook
     if (this.libreryService.activeBook.numberOf > 0) {
       --this.list[this.serchActiveBookIndexId()].numberOf
-      this.isTakenList.push(new TakenBook(actBook.id,actBook.name,actBook.author,actBook.release,actBook.genre,whoTook,returnDate))
+      this.isTakenList.push(new TakenBook(actBook.id, actBook.name, actBook.author, actBook.release, actBook.genre, whoTook, returnDate))
     }
     else alert("Книги закончились")
   }
